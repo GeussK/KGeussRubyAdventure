@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6876438844591606696}
   - component: {fileID: 6876438844591606697}
+  - component: {fileID: 8331079086753251330}
   m_Layer: 0
   m_Name: TelegraphPost
   m_TagString: Untagged
@@ -84,3 +85,29 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &8331079086753251330
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6876438844591606702}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.00713253, y: 0.24411464}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.1074043, y: 0.019755514}
+    oldSize: {x: 4.9375, y: 8}
+    newSize: {x: 4.9375, y: 8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.42072868, y: 0.8043175}
+  m_EdgeRadius: 0
