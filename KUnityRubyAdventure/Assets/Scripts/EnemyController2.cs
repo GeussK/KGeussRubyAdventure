@@ -1,17 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 
 public class EnemyController2 : MonoBehaviour
 {
     public float speed;
+    [SerializeField] ScoreScript scoreScript;
     public bool vertical;
     public float changeTime = 3.0f;
-
+    
     public ParticleSystem SmokeEffect;
+    
 
+#pragma warning disable CS0108 // Member hides inherited member; missing new keyword
     Rigidbody2D rigidbody2D;
+#pragma warning restore CS0108 // Member hides inherited member; missing new keyword
     float timer;
     int direction = 1;
     bool broken = true;
@@ -24,13 +28,17 @@ public class EnemyController2 : MonoBehaviour
         rigidbody2D = GetComponent<Rigidbody2D>();
         timer = changeTime;
         animator = GetComponent<Animator>();
+        
+        
     }
 
     void Update()
     {
         //remember ! inverse the test, so if broken is true !broken will be false and return won’t be executed.
+        
         if (!broken)
         {
+            
             return;
         }
 
@@ -41,6 +49,8 @@ public class EnemyController2 : MonoBehaviour
             direction = -direction;
             timer = changeTime;
         }
+
+        
     }
 
     void FixedUpdate()
@@ -48,6 +58,7 @@ public class EnemyController2 : MonoBehaviour
         //remember ! inverse the test, so if broken is true !broken will be false and return won’t be executed.
         if (!broken)
         {
+            
             return;
         }
 
@@ -82,11 +93,15 @@ public class EnemyController2 : MonoBehaviour
     //Public because we want to call it from elsewhere like the projectile script
     public void Fix()
     {
+        scoreScript.ChangeScore();
         broken = false;
         rigidbody2D.simulated = false;
         //optional if you added the fixed animation
         animator.SetTrigger("Fixed");
 
         SmokeEffect.Stop();
+        
+
     }
+
 }

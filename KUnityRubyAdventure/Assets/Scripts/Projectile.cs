@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Projectile : MonoBehaviour
 {
     Rigidbody2D rigidbody2d;
+    
+
 
     void Awake()
     {
@@ -30,8 +33,10 @@ public class Projectile : MonoBehaviour
         if (e != null)
         {
             e.Fix();
+            
         }
 
+        
         Destroy(gameObject);
     }
 }

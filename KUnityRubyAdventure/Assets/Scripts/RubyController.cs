@@ -5,8 +5,13 @@ using UnityEngine;
 public class RubyController : MonoBehaviour
 {
     public float speed = 3.0f;
+    [SerializeField] LossUIScript lossUIScript;
+    
 
     public int maxHealth = 5;
+
+    public ParticleSystem RubyHealthEffect;
+    public ParticleSystem RubyDamageEffect;
 
     public GameObject projectilePrefab;
 
@@ -40,9 +45,25 @@ public class RubyController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    public void WinSpeed()
+    {
+        speed = 0f;
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
+        if (currentHealth == 0)
+        {
+            speed = 0f;
+            lossUIScript.ChangeLoss();
+        }
+
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
@@ -104,6 +125,7 @@ public class RubyController : MonoBehaviour
             invincibleTimer = timeInvincible;
 
             PlaySound(hitSound);
+            RubyDamageEffect.Play();
         }
 
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
