@@ -9,8 +9,40 @@ public class LossUIScript : MonoBehaviour
 {
 
     public TMP_Text UILoss;
+    public TMP_Text UITimer;
     public string displayLoss;
+    public string timeRemainingString;
     public bool playerLose;
+
+    [SerializeField] RubyController rubyController;
+
+    public int duration = 30;
+    public int timeRemaining = 30;
+    public bool isCountingDown = false;
+
+    public void Begin()
+    {
+        if (!isCountingDown)
+        {
+            isCountingDown = true;
+            timeRemaining = duration;
+            Invoke("_tick", 1f);
+        }
+    }
+
+    public void _tick()
+    {
+        timeRemaining--;
+        if (timeRemaining >= 0)
+        {
+            Invoke("_tick", 1f);
+        }
+        else
+        {
+            isCountingDown = false;
+        }
+    }
+
 
     // Start is called before the first frame update
     void Start()
@@ -21,8 +53,11 @@ public class LossUIScript : MonoBehaviour
 
     public void ChangeLoss()
     {
-        displayLoss = "You've lost! Press 'R' to restart!";
-        playerLose = true;
+        if (timeRemaining != 0)
+        {
+            displayLoss = "You've lost! Press 'R' to restart!";
+            playerLose = true;
+        }
     }
 
     // Update is called once per frame
@@ -30,7 +65,17 @@ public class LossUIScript : MonoBehaviour
     {
         //int score = numberDestroyed;
 
+        timeRemainingString = timeRemaining.ToString();
+
+        if ( timeRemaining == 0 )
+        {
+            displayLoss = "You ran out of time! Press 'R' to restart!";
+            playerLose = true;
+            rubyController.WinSpeed();
+        }
+
         UILoss.text = displayLoss;
+        UITimer.text = "Time Left: " + timeRemainingString;
         if (Input.GetKey(KeyCode.R))
 
         {
@@ -44,5 +89,6 @@ public class LossUIScript : MonoBehaviour
             }
 
         }
+
     }
 }

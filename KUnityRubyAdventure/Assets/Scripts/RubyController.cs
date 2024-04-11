@@ -5,8 +5,10 @@ using UnityEngine;
 public class RubyController : MonoBehaviour
 {
     public float speed = 3.0f;
+
     [SerializeField] LossUIScript lossUIScript;
     
+
 
     public int maxHealth = 5;
 
@@ -50,12 +52,18 @@ public class RubyController : MonoBehaviour
         speed = 0f;
     }
 
+
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
+        }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            lossUIScript.Begin();
         }
 
         if (currentHealth == 0)
