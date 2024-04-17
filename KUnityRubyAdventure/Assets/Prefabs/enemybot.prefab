@@ -150,9 +150,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  numberDestroyed: 0
+  scoreScript: {fileID: 0}
   vertical: 1
   changeTime: 5
+  fixClip: {fileID: 8300000, guid: 59a5ba5c192e7274cac1b4830be0b2bd, type: 3}
+  hitClip: {fileID: 8300000, guid: b88b4942e76580345a626a5796635449, type: 3}
   SmokeEffect: {fileID: 2867831554428069761}
 --- !u!95 &2417664259844785193
 Animator:
@@ -186,13 +188,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6bfbad8ffdf387d4e87e8fa07b62f7c1, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 190
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 10

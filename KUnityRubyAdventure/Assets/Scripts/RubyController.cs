@@ -18,6 +18,7 @@ public class RubyController : MonoBehaviour
     public GameObject projectilePrefab;
 
     public AudioClip throwSound;
+    public AudioClip chickenSound;
     public AudioClip hitSound;
 
     public int health { get { return currentHealth; } }
@@ -131,9 +132,11 @@ public class RubyController : MonoBehaviour
 
             isInvincible = true;
             invincibleTimer = timeInvincible;
-
-            PlaySound(hitSound);
-            RubyDamageEffect.Play();
+            if (currentHealth > 0)
+            {
+                PlaySound(hitSound);
+                RubyDamageEffect.Play();
+            }
         }
 
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
@@ -151,6 +154,10 @@ public class RubyController : MonoBehaviour
         animator.SetTrigger("Launch");
 
         PlaySound(throwSound);
+    }
+    public void Chicken()
+    {
+        PlaySound(chickenSound);
     }
 
     public void PlaySound(AudioClip clip)

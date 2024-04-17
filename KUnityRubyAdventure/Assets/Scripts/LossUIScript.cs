@@ -13,21 +13,29 @@ public class LossUIScript : MonoBehaviour
     public string displayLoss;
     public string timeRemainingString;
     public bool playerLose;
+    public bool soundPlayed = false;
 
     [SerializeField] RubyController rubyController;
 
     public int duration = 30;
     public int timeRemaining = 30;
     public bool isCountingDown = false;
-
+    public AudioClip loseSound;
+    AudioSource audioSource;
     public void Begin()
     {
+        
         if (!isCountingDown)
         {
             isCountingDown = true;
             timeRemaining = duration;
             Invoke("_tick", 1f);
         }
+    }
+
+    public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
     }
 
     public void _tick()
@@ -49,6 +57,7 @@ public class LossUIScript : MonoBehaviour
     {
         displayLoss = "";
         playerLose = false;
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void ChangeLoss()
@@ -57,6 +66,11 @@ public class LossUIScript : MonoBehaviour
         {
             displayLoss = "You've lost! Press 'R' to restart!";
             playerLose = true;
+            if (!soundPlayed)
+            {
+                PlaySound(loseSound);
+                soundPlayed = true;
+            }
         }
     }
 
@@ -72,6 +86,7 @@ public class LossUIScript : MonoBehaviour
             displayLoss = "You ran out of time! Press 'R' to restart!";
             playerLose = true;
             rubyController.WinSpeed();
+            
         }
 
         UILoss.text = displayLoss;

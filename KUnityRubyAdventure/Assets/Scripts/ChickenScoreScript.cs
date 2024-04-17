@@ -4,35 +4,34 @@ using UnityEngine;
 using TMPro;
 using System;
 
-public class ScoreScript : MonoBehaviour  
+public class ChickenScoreScript : MonoBehaviour
 {
-    
     public TMP_Text UIScore;
-    public int numberDestroyed;
+    public int chickenCollect;
     [SerializeField] WinUiScript winUiScript;
     
     // Start is called before the first frame update
     void Start()
     {
-        numberDestroyed = 0;
-        
+        chickenCollect = 0;
+
     }
 
     public void ChangeScore()
     {
-        numberDestroyed++;
+        chickenCollect++;
     }
 
     // Update is called once per frame
     void Update()
     {
         //int score = numberDestroyed;
-        
-        UIScore.text = "Robots Fixed:" + numberDestroyed.ToString();
-        if (numberDestroyed == 4)
+
+        UIScore.text = "Chickens Collected:" + chickenCollect.ToString();
+        if (chickenCollect == 3)
         {
             winUiScript.ChangeWin();
-            winUiScript.Robot();
+            winUiScript.Chicken();
         }
     }
 }
