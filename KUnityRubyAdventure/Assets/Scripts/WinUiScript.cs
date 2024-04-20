@@ -16,6 +16,7 @@ public class WinUiScript : MonoBehaviour
     public bool chicken = false;
     public bool robot = false;
     [SerializeField] RubyController rubyController;
+    [SerializeField] LossUIScript lossUIScript;
 
     // Start is called before the first frame update
 
@@ -50,6 +51,7 @@ public class WinUiScript : MonoBehaviour
                 soundPlayed = true;
             }
             rubyController.WinSpeed();
+            lossUIScript.playerWon();
         }
     }
 

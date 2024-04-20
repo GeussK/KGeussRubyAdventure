@@ -857,6 +857,8 @@ MonoBehaviour:
   displayLoss: 
   timeRemainingString: 
   playerLose: 0
+  playerWin: 0
+  soundPlayed: 0
   rubyController: {fileID: 1827419225}
   duration: 30
   timeRemaining: 30
@@ -1688,9 +1690,11 @@ MonoBehaviour:
   WinUI: {fileID: 755983975}
   displayWin: 
   winSound: {fileID: 8300000, guid: 0d6d3f5d4b2333545b3e84bceeb5090c, type: 3}
+  soundPlayed: 0
   chicken: 0
   robot: 0
   rubyController: {fileID: 1827419225}
+  lossUIScript: {fileID: 545717949}
 --- !u!114 &755983975
 MonoBehaviour:
   m_ObjectHideFlags: 0
